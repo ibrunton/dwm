@@ -15,11 +15,13 @@ static const unsigned int gappx	    = 3;	/* gap pixel width */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 static const Bool focusonclick	    = True;	/* change focus only on click */
-static const int systray_width		= 34;
 
 static const Rule rules[] = {
 	/* class		instance    title       tags mask     isfloating   iscentred,	monitor */
 	{ "Gimp",		NULL,       NULL,       1 << 5,		True,		False,	-1 },
+	{ "Geeqie",		NULL,       NULL,       1 << 5,		True,		False,	-1 },
+	{ "Dolphin",	NULL,       NULL,       1 << 5,		True,		False,	-1 },
+	{ "Vlc",		NULL,       NULL,       1 << 5,		True,		True,	-1 },
 	{ "Firefox",	NULL,       NULL,       1 << 1,		False,		False,	-1 },
 	{ "Okular",		NULL,       NULL,       1 << 4,		False,		False,	-1 },
 	{ "URxvt",		NULL,		"MAILTO",	1 << 1,		True,		True,	-1 },
