@@ -8,26 +8,21 @@ static const char normfgcolor[]     = "#aaaaaa";
 static const char selbordercolor[]  = "#14915f";
 static const char selbgcolor[]      = "#052111";
 static const char selfgcolor[]      = "#14915f";
-/*#define NUMCOLORS 3
-static const char colors[NUMCOLORS][ColLast][8] = {
-	[> border	  fg		 bg <]
-	{ "#333333", "#aaaaaa", "#051121" },  [> normal <]
-	{ "#14915f", "#000000", "#14915f" },  [> selected <]
-	{ "#ff0000", "#000000", "#cecece" },  [> urgent <]
-};*/
 
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 20;       /* snap pixel */
-static const unsigned int gappx	    = 2;	/* gap pixel width */
+static const unsigned int gappx	    = 3;	/* gap pixel width */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 static const Bool focusonclick	    = True;	/* change focus only on click */
+static const int systray_width		= 34;
 
 static const Rule rules[] = {
-	/* class		instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",		NULL,       NULL,       1 << 5,		True,		-1 },
-	{ "Firefox",	NULL,       NULL,       1 << 1,		False,		-1 },
-	{ "Okular",		NULL,       NULL,       1 << 4,		False,		-1 },
+	/* class		instance    title       tags mask     isfloating   iscentred,	monitor */
+	{ "Gimp",		NULL,       NULL,       1 << 5,		True,		False,	-1 },
+	{ "Firefox",	NULL,       NULL,       1 << 1,		False,		False,	-1 },
+	{ "Okular",		NULL,       NULL,       1 << 4,		False,		False,	-1 },
+	{ "URxvt",		NULL,		"MAILTO",	1 << 1,		True,		True,	-1 },
 };
 
 /* layout(s) */
@@ -48,7 +43,7 @@ static const Layout layouts[] = {
 /* static const char *tags[] = { "term", "www", "xdr", "dev", "doc", "etc" }; */
 static const Tag tags[] = {
   /* name	layout			mfact	monitor */
-  { "term",	&layouts[0],	-1,		-1 },
+  { "term",	&layouts[2],	-1,		-1 },
   { "www",	&layouts[0],	0.75,	-1 },
   { "xdr",	&layouts[1],	-1,		-1 },
   { "dev",	&layouts[2],	0.55,	-1 },
@@ -68,14 +63,15 @@ static const Tag tags[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[]	   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *mymenucmd[]	   = { "/home/ian/bin/dmenu_custom.bash", NULL };
-static const char *termcmd[]	   = { "urxvt", NULL };
-static const char *emacscmd[]	   = { "/home/ian/bin/emet", NULL };
-static const char *volmcmd[]	   = { "amixer", "-q", "sset", "Master", "toggle", NULL };
-static const char *voldcmd[]       = { "amixer", "-q", "sset", "Master", "1-", "unmute", NULL };
-static const char *volucmd[]       = { "amixer", "-q", "sset", "Master", "1+", "unmute", NULL };
-static const char *slrhcmd[]	   = { "/home/ian/bin/slrh.sh", NULL };
+static const char *dmenucmd[]	= { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+/*static const char *dmenucmd[]	= { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };*/
+static const char *mymenucmd[]	= { "/home/ian/bin/dmenu_custom.bash", NULL };
+static const char *termcmd[]	= { "urxvt", NULL };
+static const char *emacscmd[]	= { "/home/ian/bin/emet", NULL };
+static const char *volmcmd[]	= { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *voldcmd[]    = { "amixer", "-q", "sset", "Master", "1-", "unmute", NULL };
+static const char *volucmd[]    = { "amixer", "-q", "sset", "Master", "1+", "unmute", NULL };
+static const char *slrhcmd[]	= { "/home/ian/bin/slrh.sh", NULL };
 /* static const char *mpdvoldcmd[]    = { "ncmpcpp", "volume", "-2", NULL }; */
 /* static const char *mpdvolucmd[]    = { "ncmpcpp", "volume", "+2", NULL }; */
 /* static const char *mpdtogglecmd[]  = { "ncmpcpp", "toggle", NULL }; */
